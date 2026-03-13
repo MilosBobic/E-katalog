@@ -1,36 +1,71 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eKatalog - @yield('title', 'Home')</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <body class="bg-gray-100 min-h-screen">
+    {{-- NAVBAR --}}
+    <nav class="bg-white shadow-md">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="{{ route('home') }}" class="text-2xl font-bold text-blue-600">eKatalog</a>
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+            <div class="flex gap-6 items-center">
+                <a href="{{ route('catalog') }}" class="text-gray-600 hover:text-blue-600">Catalog</a>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+                @auth
+                    <a href="{{ route('cart.index') }}" class="text-gray-600 hover:text-blue-600">
+                        🛒 Cart
+                        @php
+                            $cartCount = \App\Models\CartItem::where('user_id', auth()->id())->sum('quantity');
+                        @endphp
+                        @if($cartCount > 0)
+                            <span class="bg-blue-600 text-white text-xs rounded-full px-2 py-0.5">{{ $cartCount }}</span>
+                        @endif
+                    </a>
+                    <a href="{{ route('orders.index') }}" class="text-gray-600 hover:text-blue-600">My Orders</a>
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+                    @if(auth()->user()->is_admin)
+                        <a href="{{ route('admin.dashboard') }}" class="text-purple-600 font-semibold hover:text-purple-800">Admin</a>
+                    @endif
 
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button class="text-gray-600 hover:text-red-600">Logout</button>
+                    </form>
+                @else
+                    <a href="{{ route('login') }}" class="text-gray-600 hover:text-blue-600">Login</a>
+                    <a href="{{ route('register') }}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Register</a>
+                @endauth
+            </div>
         </div>
-    </body>
+    </nav>
+
+    {{-- FLASH MESSAGES --}}
+    <div class="max-w-6xl mx-auto px-4 mt-4">
+        @if(session('success'))
+            <div class="bg-green-100 text-green-800 px-4 py-3 rounded mb-4">
+                {{ session('success') }}
+            </div>
+        @endif
+        @if(session('error'))
+            <div class="bg-red-100 text-red-800 px-4 py-3 rounded mb-4">
+                {{ session('error') }}
+            </div>
+        @endif
+    </div>
+
+    {{-- PAGE CONTENT --}}
+    <main class="max-w-6xl mx-auto px-4 py-6">
+        @yield('content')
+    </main>
+
+    <footer class="text-center text-gray-400 py-6 mt-10 border-t">
+        eKatalog © {{ date('Y') }}
+    </footer>
+
+</body>
 </html>
