@@ -4,14 +4,14 @@
 
 @section('content')
 
-    <a href="{{ route('admin.orders.index') }}" class="text-blue-500 hover:underline mb-4 inline-block">← Back</a>
+    <a href="{{ route('admin.orders.index') }}" class="text-blue-500 hover:underline mb-4 inline-block">← Nazad</a>
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
         {{-- ORDER ITEMS --}}
         <div class="lg:col-span-2 bg-white rounded-xl shadow p-6">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-xl font-bold">Order #{{ $order->id }}</h2>
+                <h2 class="text-xl font-bold">Porudžbina #{{ $order->id }}</h2>
                 <span class="text-gray-400 text-sm">{{ $order->created_at->format('d M Y, H:i') }}</span>
             </div>
 
@@ -31,7 +31,7 @@
 
             <div class="flex justify-between font-bold text-lg pt-4 border-t">
                 <span>Total</span>
-                <span class="text-blue-600">${{ number_format($order->total, 2) }}</span>
+                <span class="text-blue-600">RSD {{ number_format($order->total, 2) }}</span>
             </div>
         </div>
 
@@ -40,7 +40,7 @@
 
             {{-- CUSTOMER INFO --}}
             <div class="bg-white rounded-xl shadow p-6">
-                <h3 class="font-bold mb-4">Customer</h3>
+                <h3 class="font-bold mb-4">Kupac</h3>
                 <p class="text-gray-700 font-semibold">{{ $order->user->name }}</p>
                 <p class="text-gray-500 text-sm">{{ $order->user->email }}</p>
                 <hr class="my-3">
@@ -54,18 +54,18 @@
 
             {{-- UPDATE STATUS --}}
             <div class="bg-white rounded-xl shadow p-6">
-                <h3 class="font-bold mb-4">Update Status</h3>
+                <h3 class="font-bold mb-4">Ažuriraj stanje</h3>
                 <form method="POST" action="{{ route('admin.orders.update', $order->id) }}">
                     @csrf
                     @method('PATCH')
                     <select name="status" class="w-full border rounded-lg px-4 py-2 mb-3">
-                        <option value="pending" {{ $order->status === 'pending' ? 'selected' : '' }}>Pending</option>
-                        <option value="processing" {{ $order->status === 'processing' ? 'selected' : '' }}>Processing</option>
-                        <option value="delivered" {{ $order->status === 'delivered' ? 'selected' : '' }}>Delivered</option>
+                        <option value="pending" {{ $order->status === 'pending' ? 'selected' : '' }}>Na čekanju</option>
+                        <option value="processing" {{ $order->status === 'processing' ? 'selected' : '' }}>U obradi</option>
+                        <option value="delivered" {{ $order->status === 'delivered' ? 'selected' : '' }}>Isporučeno</option>
                     </select>
                     <button type="submit"
                             class="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
-                        Update Status
+                        Ažuriraj stanje
                     </button>
                 </form>
             </div>

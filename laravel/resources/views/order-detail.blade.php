@@ -27,24 +27,24 @@
         {{-- DELIVERY INFO --}}
         <div class="grid grid-cols-2 gap-4 mb-6 p-4 bg-gray-50 rounded-xl">
             <div>
-                <p class="text-gray-500 text-sm">Full Name</p>
+                <p class="text-gray-500 text-sm">Puno ime</p>
                 <p class="font-semibold">{{ $order->full_name }}</p>
             </div>
             <div>
-                <p class="text-gray-500 text-sm">Phone</p>
+                <p class="text-gray-500 text-sm">Telefon</p>
                 <p class="font-semibold">{{ $order->phone }}</p>
             </div>
             <div>
-                <p class="text-gray-500 text-sm">Address</p>
+                <p class="text-gray-500 text-sm">Adresa</p>
                 <p class="font-semibold">{{ $order->address }}</p>
             </div>
             <div>
-                <p class="text-gray-500 text-sm">City</p>
+                <p class="text-gray-500 text-sm">Grad</p>
                 <p class="font-semibold">{{ $order->city }}</p>
             </div>
             @if($order->note)
                 <div class="col-span-2">
-                    <p class="text-gray-500 text-sm">Note</p>
+                    <p class="text-gray-500 text-sm">Napomena</p>
                     <p class="font-semibold">{{ $order->note }}</p>
                 </div>
             @endif
@@ -69,7 +69,7 @@
         {{-- TOTAL --}}
         <div class="flex justify-between font-bold text-xl mt-6 pt-4 border-t">
             <span>Total</span>
-            <span class="text-blue-600">${{ number_format($order->total, 2) }}</span>
+            <span class="text-blue-600">RSD {{ number_format($order->total, 2) }}</span>
         </div>
     </div>
 

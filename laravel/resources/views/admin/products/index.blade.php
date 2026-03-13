@@ -5,10 +5,10 @@
 @section('content')
 
     <div class="flex justify-between items-center mb-6">
-        <h2 class="text-2xl font-bold">Products</h2>
+        <h2 class="text-2xl font-bold">Proizvodi</h2>
         <a href="{{ route('admin.products.create') }}"
            class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
-            + Add Product
+            + Dodaj proizvod
         </a>
     </div>
 
@@ -16,13 +16,13 @@
         <table class="w-full text-sm">
             <thead>
                 <tr class="text-left text-gray-500 border-b">
-                    <th class="p-4">Image</th>
-                    <th class="p-4">Name</th>
-                    <th class="p-4">Category</th>
-                    <th class="p-4">Price</th>
-                    <th class="p-4">Stock</th>
-                    <th class="p-4">Featured</th>
-                    <th class="p-4">Actions</th>
+                    <th class="p-4">Slika</th>
+                    <th class="p-4">Naziv</th>
+                    <th class="p-4">Kategorija</th>
+                    <th class="p-4">Cena</th>
+                    <th class="p-4">Zaliha</th>
+                    <th class="p-4">Istaknuto</th>
+                    <th class="p-4">Akcije</th>
                 </tr>
             </thead>
             <tbody class="divide-y">
@@ -40,7 +40,7 @@
                         </td>
                         <td class="p-4 font-semibold">{{ $product->name }}</td>
                         <td class="p-4 text-gray-500">{{ $product->category->name }}</td>
-                        <td class="p-4 text-blue-600 font-semibold">${{ number_format($product->price, 2) }}</td>
+                        <td class="p-4 text-blue-600 font-semibold">RSD {{ number_format($product->price, 2) }}</td>
                         <td class="p-4">
                             <span @class([
                                 'px-2 py-1 rounded-full text-xs font-semibold',
@@ -50,25 +50,25 @@
                         </td>
                         <td class="p-4">
                             @if($product->is_featured)
-                                <span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full text-xs">Yes</span>
+                                <span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full text-xs">Da</span>
                             @else
-                                <span class="text-gray-400 text-xs">No</span>
+                                <span class="text-gray-400 text-xs">Ne</span>
                             @endif
                         </td>
                         <td class="p-4 flex gap-3">
                             <a href="{{ route('admin.products.edit', $product->id) }}"
-                               class="text-blue-500 hover:underline">Edit</a>
+                               class="text-blue-500 hover:underline">Izmeni</a>
                             <form method="POST" action="{{ route('admin.products.destroy', $product->id) }}"
                                   onsubmit="return confirm('Delete this product?')">
                                 @csrf
                                 @method('DELETE')
-                                <button class="text-red-500 hover:underline">Delete</button>
+                                <button class="text-red-500 hover:underline">Obriši</button>
                             </form>
                         </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="7" class="p-4 text-center text-gray-400">No products yet.</td>
+                        <td colspan="7" class="p-4 text-center text-gray-400">Nema dostupnih proizvoda.</td>
                     </tr>
                 @endforelse
             </tbody>

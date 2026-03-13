@@ -12,7 +12,7 @@
                 <a href="{{ route('orders.show', $order->id) }}"
                    class="bg-white rounded-xl shadow p-6 flex justify-between items-center hover:shadow-md transition block">
                     <div>
-                        <p class="font-bold text-gray-800">Order #{{ $order->id }}</p>
+                        <p class="font-bold text-gray-800">Porudžba #{{ $order->id }}</p>
                         <p class="text-gray-500 text-sm">{{ $order->created_at->format('d M Y') }}</p>
                     </div>
                     <div class="text-center">
@@ -26,8 +26,8 @@
                         </span>
                     </div>
                     <div class="text-right">
-                        <p class="font-bold text-blue-600">${{ number_format($order->total, 2) }}</p>
-                        <p class="text-gray-400 text-sm">View details →</p>
+                        <p class="font-bold text-blue-600">RSD {{ number_format($order->total, 2) }}</p>
+                        <p class="text-gray-400 text-sm">Pogledaj detalje →</p>
                     </div>
                 </a>
             @endforeach
@@ -35,9 +35,9 @@
     @else
         <div class="text-center py-20 text-gray-400">
             <p class="text-5xl mb-4">📦</p>
-            <p class="text-xl mb-4">You have no orders yet</p>
+            <p class="text-xl mb-4">Nemate porudžbina</p>
             <a href="{{ route('catalog') }}" class="bg-blue-600 text-white px-8 py-3 rounded-xl hover:bg-blue-700">
-                Start Shopping
+                Počni sa kupovinom
             </a>
         </div>
     @endif

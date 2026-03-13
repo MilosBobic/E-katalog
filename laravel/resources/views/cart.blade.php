@@ -27,7 +27,7 @@
                         {{-- DETAILS --}}
                         <div class="flex-1">
                             <p class="font-semibold text-gray-800">{{ $item->product->name }}</p>
-                            <p class="text-blue-600 font-bold">${{ number_format($item->product->price, 2) }}</p>
+                            <p class="text-blue-600 font-bold">RSD {{ number_format($item->product->price, 2) }}</p>
                         </div>
 
                         {{-- QUANTITY --}}
@@ -64,26 +64,26 @@
 
             {{-- ORDER SUMMARY --}}
             <div class="bg-white rounded-xl shadow p-6 h-fit">
-                <h2 class="text-xl font-bold mb-4">Order Summary</h2>
+                <h2 class="text-xl font-bold mb-4">Porudžba</h2>
                 <div class="flex justify-between mb-2 text-gray-600">
-                    <span>Subtotal</span>
-                    <span>${{ number_format($total, 2) }}</span>
+                    <span>Ukupna cena</span>
+                    <span>RSD {{ number_format($total, 2) }}</span>
                 </div>
                 <div class="flex justify-between mb-4 text-gray-600">
-                    <span>Shipping</span>
+                    <span>Dostava</span>
                     <span class="text-green-500">Free</span>
                 </div>
                 <div class="border-t pt-4 flex justify-between font-bold text-lg">
-                    <span>Total</span>
-                    <span class="text-blue-600">${{ number_format($total, 2) }}</span>
+                    <span>Cena</span>
+                    <span class="text-blue-600">RSD {{ number_format($total, 2) }}</span>
                 </div>
                 <a href="{{ route('checkout') }}"
                    class="block text-center bg-blue-600 text-white px-6 py-3 rounded-xl mt-6 hover:bg-blue-700 font-semibold">
-                    Proceed to Checkout
+                    Nastavi na plaćanje
                 </a>
                 <a href="{{ route('catalog') }}"
                    class="block text-center text-gray-500 mt-3 hover:text-blue-500">
-                    Continue Shopping
+                    Nastavi sa kupovinom
                 </a>
             </div>
 
@@ -91,9 +91,9 @@
     @else
         <div class="text-center py-20 text-gray-400">
             <p class="text-5xl mb-4">🛒</p>
-            <p class="text-xl mb-4">Your cart is empty</p>
+            <p class="text-xl mb-4">Vaša korpa je prazna</p>
             <a href="{{ route('catalog') }}" class="bg-blue-600 text-white px-8 py-3 rounded-xl hover:bg-blue-700">
-                Browse Catalog
+                Pregledaj katalog
             </a>
         </div>
     @endif

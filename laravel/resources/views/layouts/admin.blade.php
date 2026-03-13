@@ -24,15 +24,15 @@
                 </a>
                 <a href="{{ route('admin.products.index') }}"
                    class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-700 {{ request()->routeIs('admin.products*') ? 'bg-gray-700' : '' }}">
-                    📦 Products
+                    📦 Proizvodi
                 </a>
                 <a href="{{ route('admin.categories.index') }}"
                    class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-700 {{ request()->routeIs('admin.categories*') ? 'bg-gray-700' : '' }}">
-                    🗂️ Categories
+                    🗂️ Kategorije
                 </a>
                 <a href="{{ route('admin.orders.index') }}"
                    class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-700 {{ request()->routeIs('admin.orders*') ? 'bg-gray-700' : '' }}">
-                    🛒 Orders
+                    🛒 Porudžbine
                 </a>
             </nav>
 
@@ -40,7 +40,7 @@
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button class="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-700 text-gray-400">
-                        🚪 Logout
+                        🚪 Odjavite se
                     </button>
                 </form>
             </div>

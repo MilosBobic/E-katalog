@@ -17,7 +17,7 @@
         >
 
         <select name="category" class="border rounded-lg px-4 py-2">
-            <option value="">All Categories</option>
+            <option value="">Sve kategorije</option>
             @foreach($categories as $category)
                 <option value="{{ $category->slug }}" {{ request('category') == $category->slug ? 'selected' : '' }}>
                     {{ $category->name }}
@@ -53,11 +53,11 @@
                     <div class="p-4">
                         <p class="text-xs text-blue-500 mb-1">{{ $product->category->name }}</p>
                         <p class="font-semibold text-gray-800">{{ $product->name }}</p>
-                        <p class="text-blue-600 font-bold mt-1">${{ number_format($product->price, 2) }}</p>
+                        <p class="text-blue-600 font-bold mt-1">RSD {{ number_format($product->price, 2) }}</p>
                         @if($product->stock > 0)
-                            <p class="text-green-500 text-xs mt-1">In stock</p>
+                            <p class="text-green-500 text-xs mt-1">Na stanju</p>
                         @else
-                            <p class="text-red-500 text-xs mt-1">Out of stock</p>
+                            <p class="text-red-500 text-xs mt-1">Nema na stanju</p>
                         @endif
                     </div>
                 </a>
@@ -71,8 +71,8 @@
 
     @else
         <div class="text-center text-gray-400 py-20">
-            <p class="text-xl">No products found.</p>
-            <a href="{{ route('catalog') }}" class="text-blue-500 mt-2 inline-block">Clear filters</a>
+            <p class="text-xl">Nisu pronađeni proizvodi.</p>
+            <a href="{{ route('catalog') }}" class="text-blue-500 mt-2 inline-block">Poništi filtere</a>
         </div>
     @endif
 
