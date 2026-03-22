@@ -73,8 +73,9 @@ DB_PASSWORD=
 # (u phpMyAdmin ili terminalu)
 # CREATE DATABASE ekatalog;
 
-# 6. Pokreni migracije
+# 6. Pokreni migracije i seedere
 `php artisan migrate`
+`php artisan db:seed`
 
 # 7. Poveži storage za slike
 `php artisan storage:link`

@@ -14,11 +14,11 @@
             <a href="{{ route('home') }}" class="text-2xl font-bold text-blue-600">eKatalog</a>
 
             <div class="flex gap-6 items-center">
-                <a href="{{ route('catalog') }}" class="text-gray-600 hover:text-blue-600">Catalog</a>
+                <a href="{{ route('catalog') }}" class="text-gray-600 hover:text-blue-600">Katalog</a>
 
                 @auth
                     <a href="{{ route('cart.index') }}" class="text-gray-600 hover:text-blue-600">
-                        🛒 Cart
+                        Korpa
                         @php
                             $cartCount = \App\Models\CartItem::where('user_id', auth()->id())->sum('quantity');
                         @endphp
@@ -26,7 +26,7 @@
                             <span class="bg-blue-600 text-white text-xs rounded-full px-2 py-0.5">{{ $cartCount }}</span>
                         @endif
                     </a>
-                    <a href="{{ route('orders.index') }}" class="text-gray-600 hover:text-blue-600">My Orders</a>
+                    <a href="{{ route('orders.index') }}" class="text-gray-600 hover:text-blue-600">Moje porudžbine</a>
 
                     @if(auth()->user()->is_admin)
                         <a href="{{ route('admin.dashboard') }}" class="text-purple-600 font-semibold hover:text-purple-800">Admin</a>
@@ -34,10 +34,10 @@
 
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button class="text-gray-600 hover:text-red-600">Logout</button>
+                        <button class="text-gray-600 hover:text-red-600">Odjava</button>
                     </form>
                 @else
-                    <a href="{{ route('login') }}" class="text-gray-600 hover:text-blue-600">Login</a>
+                    <a href="{{ route('login') }}" class="text-gray-600 hover:text-blue-600">Prijava</a>
                     <a href="{{ route('register') }}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Register</a>
                 @endauth
             </div>

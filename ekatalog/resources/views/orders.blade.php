@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <h1 class="text-3xl font-bold mb-6">My Orders</h1>
+    <h1 class="text-3xl font-bold mb-6">Moje porudžbine</h1>
 
     @if($orders->count() > 0)
         <div class="space-y-4">
@@ -12,7 +12,7 @@
                 <a href="{{ route('orders.show', $order->id) }}"
                    class="bg-white rounded-xl shadow p-6 flex justify-between items-center hover:shadow-md transition block">
                     <div>
-                        <p class="font-bold text-gray-800">Porudžba #{{ $order->id }}</p>
+                        <p class="font-bold text-gray-800">Porudžbina #{{ $order->id }}</p>
                         <p class="text-gray-500 text-sm">{{ $order->created_at->format('d M Y') }}</p>
                     </div>
                     <div class="text-center">
