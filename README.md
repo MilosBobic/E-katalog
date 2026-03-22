@@ -81,14 +81,13 @@ DB_PASSWORD=
 `php artisan storage:link`
 
 # 8. Pokreni aplikaciju
-```php artisan serve
+```
+php artisan serve
 npm run dev
 ```
-
-Aplikacija je dostupna na http://localhost:8000
 
 ## Admin nalog
 
 Nakon registracije, otvori phpMyAdmin - tabela `users` - postavi `is_admin = 1` za odgovarajuci nalog.
 
-Admin panel je dostupan na /admin
+Seeder automatski dodaje admin nalog - admin@
